@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cycle</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#calendar">Calendar</a></li>
+                <li><a href="#analysis">Analysis</a></li>
+            </ul>
+        </nav>
+    </header>
+    <section id="home">
+        <h1>Your Current Cycle</h1>
+        <div class="chart-container">
+            <!-- Central white circle -->
+            <div class="center-circle">
+                <h2 id="phase-name">Menstrual Phase</h2>
+                <h2 id="today-date">Today, Jan x</h2>
+            </div>
+            <!-- Draggable outer circle -->
+            <div id="drag-circle" draggable="true">
+                <p id="current-day">Day 1</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Modal for Phase Details -->
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <span class="close-button">&times;</span>
+            <h2 id="modal-phase-name">Menstrual Phase</h2>
+            <p id="modal-phase-details">
+                This is your period. Rest and take care of yourself. Eat warm, comforting foods like soups and stay hydrated.
+            </p>
+        </div>
+    </div>
+
+    
+    <button id="learn-phase">Learn About This Phase</button>
+
+    <script src="script.js"></script>
+</body>
+</html>

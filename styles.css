@@ -1,0 +1,154 @@
+/* General styling */
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    background-color: #fdfdfd;
+    margin: 0;
+    padding: 20px;
+}
+
+header {
+    background-color: #ff5e57;
+    padding: 10px 0;
+}
+
+nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: white;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+/* Chart container */
+/* Chart container */
+.chart-container {
+    width: 300px;
+    height: 300px;
+    margin: 30px auto;
+    background: conic-gradient(
+        from 270deg, /* Rotate starting point to the top */
+        #ff5b5b 0% 18%,  /* Menstrual Phase: Days 1–5 */
+        #bf7efc 18% 50%, /* Follicular Phase: Days 6–13 */
+        #5bdeff 50% 57%, /* Ovulation Phase: Days 14–15 */
+        #ffe1f5 57% 100% /* Luteal Phase: Days 16–28 */
+    );
+    border-radius: 50%;
+    position: relative;
+}
+
+
+
+/* Center white circle */
+.center-circle {
+    width: 180px;
+    height: 180px;
+    background-color: #ffffff;
+    border-radius: 50%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.center-circle h2 {
+    font-size: 18px;
+    color: #555;
+    margin: 0;
+}
+
+.center-circle p {
+    font-size: 24px;
+    color: #333;
+    font-weight: bold;
+    margin: 5px 0 0;
+}
+
+/* Draggable circle */
+#drag-circle {
+    width: 60px;
+    height: 60px;
+    background-color: #ffffff;
+    border-radius: 50%;
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    border: 3px solid #ff5e57; /* Border to act as the outline */
+    user-select: none;
+}
+
+#drag-circle p {
+    font-size: 18px;
+    font-weight: bold;
+    margin: 0;
+    color: #333;
+}
+
+/* Modal styling */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.4); /* Black with opacity */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.modal-content {
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    width: 80%;
+    max-width: 400px;
+}
+
+.modal-content h2 {
+    color: #ff5e57;
+    margin: 0 0 10px;
+}
+
+.modal-content p {
+    color: #555;
+    font-size: 16px;
+    line-height: 1.5;
+}
+
+.close-button {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    color: #999;
+}
+
+.close-button:hover {
+    color: #333;
+}
