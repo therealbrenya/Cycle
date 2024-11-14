@@ -54,24 +54,22 @@ const phases = [
     {
         name: "Luteal Phase",
         details: `
-            <b>What is it?</b> This is when your body prepares for your next period if you’re not pregnant. It’s the winding-down phase.<br><br>
-            <b>Why is it happening?</b> Your body is getting ready for the next cycle, and hormone levels are changing.<br><br>
-            <b>What will happen?</b> You might feel more tired, have cravings, or feel emotional (this is called PMS). It’s normal during this phase.<br><br>
-            <b>How to take care of yourself:</b> Be kind to yourself. Get enough sleep, relax, and do things that calm you, like reading or taking a bath.<br><br>
-            <b>What to eat:</b> Magnesium-rich foods like dark chocolate, leafy greens, and nuts can help ease PMS symptoms.
+            <b>What is it?</b> The uterus lining thickens to prepare for pregnancy. If pregnancy doesn’t occur, hormone levels drop.<br><br>
+            <b>Why is it happening?</b> Your body is winding down from ovulation and preparing for the next period.<br><br>
+            <b>What will happen?</b> You might feel tired, emotional, or experience PMS symptoms.<br><br>
+            <b>How to take care of yourself:</b> Get plenty of rest, reduce stress, and try gentle exercises like yoga.<br><br>
+            <b>What to eat:</b> Magnesium-rich foods like dark chocolate and leafy greens.
         `
     }
 ];
 
 // Get phase based on the day
-// Get phase based on the day
 function getPhase(day) {
-    if (day >= 1 && day <= 5) return phases[0]; // Menstrual: Day 1–5
-    if (day >= 6 && day <= 13) return phases[1]; // Follicular: Day 6–13
-    if (day === 14) return phases[2]; // Ovulation: Day 14
-    return phases[3]; // Luteal: Day 15–28
+    if (day >= 1 && day <= 5) return phases[0]; // Menstrual Phase: Days 1–5
+    if (day >= 6 && day <= 13) return phases[1]; // Follicular Phase: Days 6–13
+    if (day >= 14 && day <= 15) return phases[2]; // Ovulation Phase: Days 14–15
+    return phases[3]; // Luteal Phase: Days 16–28
 }
-
 
 // Update the date based on the selected day
 function updateDate(day) {
@@ -122,11 +120,16 @@ function setPosition(angle) {
     updatePhase(day);
 }
 
-
-// Dragging functionality
+// Dragging functionality (for desktop and mobile)
 let isDragging = false;
+
 circleContainer.addEventListener("mousedown", (e) => {
     isDragging = true;
+});
+
+circleContainer.addEventListener("touchstart", (e) => {
+    isDragging = true;
+    e.preventDefault(); // Prevent scrolling
 });
 
 window.addEventListener("mousemove", (e) => {
@@ -143,7 +146,27 @@ window.addEventListener("mousemove", (e) => {
     setPosition(angle);
 });
 
+window.addEventListener("touchmove", (e) => {
+    if (!isDragging) return;
+
+    const touch = e.touches[0]; // Get the first touch point
+    const rect = circleContainer.getBoundingClientRect();
+    const centerX = rect.left + rect.width / 2;
+    const centerY = rect.top + rect.height / 2;
+
+    const x = touch.clientX - centerX;
+    const y = touch.clientY - centerY;
+    const angle = Math.atan2(y, x);
+
+    setPosition(angle);
+    e.preventDefault(); // Prevent scrolling
+});
+
 window.addEventListener("mouseup", () => {
+    isDragging = false;
+});
+
+window.addEventListener("touchend", () => {
     isDragging = false;
 });
 
@@ -164,6 +187,6 @@ window.addEventListener("click", (e) => {
 });
 
 // Initialize default position
-setPosition(-Math.PI / 2); // Start at the top of the circle (Day 8)
+setPosition(-Math.PI / 2); // Start at the top of the circle (Day 1)
 
 modal.style.display = "none"; // Ensure modal is hidden on load
